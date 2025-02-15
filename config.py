@@ -19,7 +19,11 @@ APP_ID = int(os.environ.get("APP_ID", ""))
 API_HASH = os.environ.get("API_HASH", "")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-100"))
+CHANNEL_ID = os.environ.get("CHANNEL_ID", "")
+if CHANNEL_ID.startswith("-100"):
+    CHANNEL_ID = int(CHANNEL_ID)
+else:
+    raise ValueError("Invalid CHANNEL_ID! Make sure it starts with -100.")
 
 #OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", ""))
